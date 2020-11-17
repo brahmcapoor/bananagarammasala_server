@@ -30,7 +30,6 @@ def get_data_from_clues(filename):
 @app.route('/<clueset>')
 def get_clueset(clueset):
     details, clue_data = get_data_from_clues(f'{clueset}.txt')
-    letter_counts = get_letter_counts(clue_data)
     return jsonify(
         details=details,
         clues=clue_data
