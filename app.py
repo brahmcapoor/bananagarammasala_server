@@ -27,21 +27,13 @@ def get_data_from_clues(filename):
     
     return details, data
 
-def get_letter_counts(clue_data):
-    counts = dict(Counter("".join([clue['answer'] for clue in clue_data])))
-    for letter in string.ascii_uppercase:
-        if letter not in counts:
-            counts[letter] = 0
-    return counts
-
 @app.route('/<clueset>')
 def get_clueset(clueset):
     details, clue_data = get_data_from_clues(f'{clueset}.txt')
     letter_counts = get_letter_counts(clue_data)
     return jsonify(
         details=details,
-        clues=clue_data, 
-        letter_counts=letter_counts
+        clues=clue_data
     )
 
 @app.route('/cluesets')
